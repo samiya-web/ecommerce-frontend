@@ -6,7 +6,9 @@
     font-family: Arial, sans-serif;
 }
 
-/* ===== HEADER (Subtask 1 & 2) ===== */
+/* =========================
+   HEADER + NAVBAR
+========================= */
 .header {
     display: flex;
     align-items: center;
@@ -14,6 +16,7 @@
     background-color: #111;
     padding: 12px 30px;
     color: #fff;
+    position: relative;
 }
 
 /* Logo */
@@ -65,58 +68,32 @@
     border-radius: 50%;
 }
 
-/* Hamburger (hidden on desktop) */
+/* Hamburger */
 .hamburger {
     display: none;
     font-size: 26px;
     cursor: pointer;
 }
 
-/* ===== RESPONSIVE (Subtask 3) ===== */
-@media (max-width: 768px) {
-
-    /* Hide desktop nav */
-    .nav {
-        display: none;
-    }
-
-    /* Hide search bar */
-    .search {
-        display: none;
-    }
-
-    /* Show hamburger */
-    .hamburger {
-        display: block;
-    }
-}
-/* Mobile menu active state */
-.nav.active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: #111;
-    padding: 15px 0;
-    text-align: center;
-}
-
-.nav.active a {
-    padding: 10px 0;
-    border-top: 1px solid #333;
-}
-/* ===== HERO SECTION ===== */
+/* =========================
+   HERO SECTION (SIMPLE COLOR)
+========================= */
 .hero {
-    height: 80vh;
-    background: linear-gradient(to right, #141e30, #243b55);
+    width: 100%;
+    height: 90vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+
     padding: 20px;
+}
+
+.hero-content {
+    max-width: 700px;
+    color: #fff;
 }
 
 .hero-content h1 {
@@ -127,49 +104,80 @@
 .hero-content p {
     font-size: 18px;
     margin-bottom: 25px;
+    line-height: 1.6;
 }
 
 .hero-btn {
-    padding: 12px 30px;
+    padding: 14px 30px;
     font-size: 16px;
+    font-weight: 600;
     border: none;
-    border-radius: 5px;
-    background-color: #f39c12;
+    border-radius: 30px;
+    background-color: orange;
     color: #fff;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .hero-btn:hover {
-    background-color: #d68910;
+    background-color: darkorange;
 }
-/* =====================
-   MOBILE RESPONSIVE
-===================== */
 
+/* =========================
+   RESPONSIVE (MOBILE)
+========================= */
 @media (max-width: 768px) {
 
-  .nav {
-    display: none;   /* desktop menu hide */
-    flex-direction: column;
-    background: #222;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-  }
+    /* Hide desktop nav */
+    .nav {
+        display: none;
+        flex-direction: column;
+        background-color: #111;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
 
-  .nav.active {
-    display: flex;   /* show when hamburger clicked */
-  }
+    .nav.active {
+        display: flex;
+    }
 
-  .hamburger {
-    display: block;  /* show hamburger on mobile */
-    font-size: 24px;
-    cursor: pointer;
-  }
+    .nav a {
+        padding: 12px 0;
+        border-top: 1px solid #333;
+    }
 
-  .search {
-    display: none;   /* hide search on small screens */
-  }
+    /* Hide search */
+    .search {
+        display: none;
+    }
+
+    /* Show hamburger */
+    .hamburger {
+        display: block;
+    }
+
+    /* Hero responsive */
+    .hero {
+        height: auto;
+        padding: 60px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .hero-btn {
+        width: 100%;
+        max-width: 250px;
+    }
 }
+
+
 
