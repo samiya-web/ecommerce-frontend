@@ -5,14 +5,16 @@ const errorText = document.getElementById("error");
 // FakeStore API
 const API_URL = "https://fakestoreapi.com/products";
 
-// Fetch products
+// ================= FETCH PRODUCTS =================
 async function loadProducts() {
     try {
         loadingText.style.display = "block";
+        errorText.style.display = "none";
 
         const response = await fetch(API_URL);
+
         if (!response.ok) {
-            throw new Error("API Error");
+            throw new Error("API error");
         }
 
         const products = await response.json();
@@ -27,7 +29,7 @@ async function loadProducts() {
     }
 }
 
-// Display products
+// ================= DISPLAY PRODUCTS =================
 function displayProducts(products) {
     productGrid.innerHTML = "";
 
@@ -36,17 +38,25 @@ function displayProducts(products) {
         card.className = "product-card";
 
         card.innerHTML = `
-            <img src="${product.image}" alt="${product.title}" loading="lazy">
-            <h3>${product.title}</h3>
-            <p>₹ ${product.price}</p>
-            <button>Add to Cart</button>
+            <a href="product.html?id=${product.id}" class="product-link">
+                <img 
+                    src="${product.image}" 
+                    alt="${product.title}" 
+                    loading="lazy"
+                >
+                <h3>${product.title}</h3>
+                <p class="price">₹ ${product.price}</p>
+            </a>
+
+            <button class="add-cart-btn">Add to Cart</button>
         `;
 
         productGrid.appendChild(card);
     });
 }
 
-// Load on page load
+// ================= LOAD ON PAGE OPEN =================
 loadProducts();
+
 
 
