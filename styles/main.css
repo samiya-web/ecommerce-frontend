@@ -1,6 +1,175 @@
-body {
-    font-family: Arial, sans-serif;
+/* ===== RESET ===== */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== HEADER (Subtask 1 & 2) ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #111;
+    padding: 12px 30px;
+    color: #fff;
+}
+
+/* Logo */
+.logo h2 {
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 25px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.nav a:hover {
+    color: #f39c12;
+}
+
+/* Search bar */
+.search input {
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+/* Cart */
+.cart {
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cart .count {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: red;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* Hamburger (hidden on desktop) */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+/* ===== RESPONSIVE (Subtask 3) ===== */
+@media (max-width: 768px) {
+
+    /* Hide desktop nav */
+    .nav {
+        display: none;
+    }
+
+    /* Hide search bar */
+    .search {
+        display: none;
+    }
+
+    /* Show hamburger */
+    .hamburger {
+        display: block;
+    }
+}
+/* Mobile menu active state */
+.nav.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #111;
+    padding: 15px 0;
     text-align: center;
 }
+
+.nav.active a {
+    padding: 10px 0;
+    border-top: 1px solid #333;
+}
+/* ===== HERO SECTION ===== */
+.hero {
+    height: 80vh;
+    background: linear-gradient(to right, #141e30, #243b55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f39c12;
+    color: #fff;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    background-color: #d68910;
+}
+/* =====================
+   MOBILE RESPONSIVE
+===================== */
+
+@media (max-width: 768px) {
+
+  .nav {
+    display: none;   /* desktop menu hide */
+    flex-direction: column;
+    background: #222;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+  }
+
+  .nav.active {
+    display: flex;   /* show when hamburger clicked */
+  }
+
+  .hamburger {
+    display: block;  /* show hamburger on mobile */
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .search {
+    display: none;   /* hide search on small screens */
+  }
+}
+
