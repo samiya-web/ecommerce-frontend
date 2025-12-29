@@ -1,9 +1,45 @@
 const productGrid = document.getElementById("productGrid");
 const loadingText = document.getElementById("loading");
 const errorText = document.getElementById("error");
+const cartCount = document.querySelector(".cart .count");
 
-// FakeStore API
 const API_URL = "https://fakestoreapi.com/products";
+
+// ================= CART FUNCTIONS =================
+function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum, item) => sum + item.qty, 0);
+    cartCount.textContent = total;
+}
+
+function addToCart(product) {
+    const cart = getCart();
+    const existing = cart.find(item => item.id === product.id);
+
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            qty: 1
+        });
+    }
+
+    saveCart(cart);
+    alert("Product added to cart 🛒");
+}
 
 // ================= FETCH PRODUCTS =================
 async function loadProducts() {
@@ -11,21 +47,17 @@ async function loadProducts() {
         loadingText.style.display = "block";
         errorText.style.display = "none";
 
-        const response = await fetch(API_URL);
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("API Error");
 
-        if (!response.ok) {
-            throw new Error("API error");
-        }
-
-        const products = await response.json();
-
+        const products = await res.json();
         loadingText.style.display = "none";
         displayProducts(products);
 
-    } catch (error) {
+    } catch (err) {
         loadingText.style.display = "none";
         errorText.style.display = "block";
-        console.error(error);
+        console.error(err);
     }
 }
 
@@ -39,23 +71,22 @@ function displayProducts(products) {
 
         card.innerHTML = `
             <a href="product.html?id=${product.id}" class="product-link">
-                <img 
-                    src="${product.image}" 
-                    alt="${product.title}" 
-                    loading="lazy"
-                >
+                <img src="${product.image}" alt="${product.title}" loading="lazy">
                 <h3>${product.title}</h3>
                 <p class="price">₹ ${product.price}</p>
             </a>
-
             <button class="add-cart-btn">Add to Cart</button>
         `;
+
+        card.querySelector(".add-cart-btn")
+            .addEventListener("click", () => addToCart(product));
 
         productGrid.appendChild(card);
     });
 }
 
-// ================= LOAD ON PAGE OPEN =================
+// ================= INIT =================
+updateCartCount();
 loadProducts();
 
 
