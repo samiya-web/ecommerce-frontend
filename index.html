@@ -11,51 +11,76 @@
 
 <body>
 
-    <!-- ===== HEADER START ===== -->
-    <header class="header">
+<!-- ===== HEADER START ===== -->
+<header class="header">
 
-        <!-- Logo -->
-        <div class="logo">
-            <h2>MyStore</h2>
-        </div>
+    <!-- Logo -->
+    <div class="logo">
+        <h2>MyStore</h2>
+    </div>
 
-        <!-- Navigation -->
-        <nav class="nav">
-            <a href="#">Home</a>
-            <a href="#">Products</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
+    <!-- Navigation -->
+    <nav class="nav" id="navMenu">
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
 
-        <!-- Search bar -->
-        <div class="search">
-            <input type="text" placeholder="Search products...">
-        </div>
+    <!-- Search bar -->
+    <div class="search">
+        <input type="text" placeholder="Search products...">
+    </div>
 
-        <!-- Cart -->
-        <div class="cart">
-            🛒 <span class="count">0</span>
-        </div>
+    <!-- Cart -->
+    <div class="cart">
+        🛒 <span class="count">0</span>
+    </div>
 
-        <!-- Hamburger menu (mobile) -->
-        <div class="hamburger">
-            ☰
-        </div>
+    <!-- Hamburger menu -->
+    <div class="hamburger" id="hamburger">
+        ☰
+    </div>
 
-    </header>
-    <!-- ===== HEADER END ===== -->
+</header>
+<!-- ===== HEADER END ===== -->
 
-    <!-- ===== HERO SECTION START ===== -->
+
+<!-- ===== HERO SECTION START ===== -->
 <section class="hero">
     <div class="hero-content">
         <h1>Biggest Sale of the Year!</h1>
         <p>Discover amazing products at unbeatable prices.</p>
-        <button class="hero-btn">Shop Now</button>
+
+        <!-- CTA BUTTON (WORKING) -->
+        <a href="#products">
+            <button class="hero-btn">Shop Now</button>
+        </a>
     </div>
 </section>
 <!-- ===== HERO SECTION END ===== -->
-    <!-- JS -->
-    <script src="scripts/app.js"></script>
+
+
+<!-- ===== PRODUCTS SECTION START ===== -->
+<section id="products" style="padding: 80px 20px; text-align: center;">
+    <h2>Our Products</h2>
+    <p>Products coming soon...</p>
+</section>
+<!-- ===== PRODUCTS SECTION END ===== -->
+
+
+<!-- ===== JAVASCRIPT ===== -->
+<script src="scripts/app.js"></script>
+
+<!-- Mobile Navbar Toggle -->
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+    });
+</script>
 
 </body>
 </html>
