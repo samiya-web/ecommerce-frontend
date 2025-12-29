@@ -1,4 +1,6 @@
-/* ===== RESET ===== */
+/* =====================
+   RESET
+===================== */
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +8,9 @@
     font-family: Arial, sans-serif;
 }
 
-/* =========================
+/* =====================
    HEADER + NAVBAR
-========================= */
+===================== */
 .header {
     display: flex;
     align-items: center;
@@ -17,12 +19,12 @@
     padding: 12px 30px;
     color: #fff;
     position: relative;
+    z-index: 1000;
 }
 
 /* Logo */
 .logo h2 {
     font-size: 24px;
-    color: #fff;
 }
 
 /* Navigation */
@@ -38,16 +40,15 @@
 }
 
 .nav a:hover {
-    color: #f39c12;
+    color: orange;
 }
 
-/* Search bar */
+/* Search */
 .search input {
     padding: 7px 12px;
     border-radius: 5px;
     border: none;
     outline: none;
-    width: 200px;
 }
 
 /* Cart */
@@ -61,8 +62,8 @@
     position: absolute;
     top: -6px;
     right: -10px;
-    background-color: red;
-    color: #fff;
+    background: red;
+    color: white;
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 50%;
@@ -75,9 +76,9 @@
     cursor: pointer;
 }
 
-/* =========================
+/* =====================
    HERO SECTION
-========================= */
+===================== */
 .hero {
     width: 100%;
     height: 90vh;
@@ -87,20 +88,20 @@
     justify-content: center;
     text-align: center;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
     max-width: 700px;
-    color: #fff;
+    color: white;
 }
 
-/* =========================
-   ANIMATION
-========================= */
-@keyframes fadeInUp {
+/* Animations */
+@keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -111,73 +112,79 @@
 .hero-content h1 {
     font-size: 48px;
     margin-bottom: 15px;
-    animation: fadeInUp 1s ease forwards;
+    animation: fadeUp 1s ease forwards;
 }
 
 .hero-content p {
     font-size: 18px;
     margin-bottom: 25px;
     line-height: 1.6;
-    animation: fadeInUp 1.3s ease forwards;
+    animation: fadeUp 1.3s ease forwards;
 }
 
-/* BUTTON */
+/* CTA Button */
 .hero-btn {
-    padding: 14px 36px;
+    padding: 14px 35px;
     font-size: 16px;
     font-weight: 600;
     border: none;
     border-radius: 30px;
-    background-color: orange;
+    background: orange;
     color: white;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    animation: fadeInUp 1.6s ease forwards;
+    animation: fadeUp 1.6s ease forwards;
+    transition: all 0.3s ease;
 }
 
 .hero-btn:hover {
-    background-color: darkorange;
-    transform: scale(1.1);
+    background: darkorange;
+    transform: scale(1.08);
 }
 
-/* =========================
-   RESPONSIVE (MOBILE)
-========================= */
+/* =====================
+   MOBILE RESPONSIVE
+===================== */
 @media (max-width: 768px) {
 
-    /* Navbar */
+    /* Hide desktop nav */
     .nav {
         display: none;
-        flex-direction: column;
-        background-color: #111;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        text-align: center;
     }
 
+    /* Full screen mobile menu */
     .nav.active {
         display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #111;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        z-index: 999;
     }
 
     .nav a {
-        padding: 12px 0;
-        border-top: 1px solid #333;
+        font-size: 22px;
     }
 
+    /* Hide search */
     .search {
         display: none;
     }
 
+    /* Show hamburger */
     .hamburger {
         display: block;
     }
 
-    /* Hero */
+    /* Hero mobile */
     .hero {
         height: auto;
-        padding: 60px 20px;
+        padding: 80px 20px;
     }
 
     .hero-content h1 {
@@ -190,8 +197,15 @@
 
     .hero-btn {
         width: 100%;
-        max-width: 260px;
+        max-width: 250px;
     }
+}
+
+/* =====================
+   BODY SCROLL LOCK
+===================== */
+body.menu-open {
+    overflow: hidden;
 }
 
 
