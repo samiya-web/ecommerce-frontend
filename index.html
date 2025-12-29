@@ -14,10 +14,12 @@
 <!-- ================= HEADER ================= -->
 <header class="header">
 
+    <!-- Logo -->
     <div class="logo">
         <h2>MyStore</h2>
     </div>
 
+    <!-- Navigation -->
     <nav class="nav" id="navMenu">
         <a href="#">Home</a>
         <a href="#products">Products</a>
@@ -25,14 +27,17 @@
         <a href="#">Contact</a>
     </nav>
 
+    <!-- Search -->
     <div class="search">
         <input type="text" placeholder="Search products...">
     </div>
 
+    <!-- Cart -->
     <div class="cart">
         🛒 <span class="count">0</span>
     </div>
 
+    <!-- Hamburger -->
     <div class="hamburger" id="hamburger">☰</div>
 
 </header>
@@ -53,20 +58,22 @@
 <!-- ======================================== -->
 
 
-<!-- ============== PRODUCTS ================ -->
+<!-- ============== PRODUCTS ================= -->
 <section class="products" id="products">
 
     <h2 class="section-title">Our Products</h2>
 
-    <!-- Loading / Error -->
+    <!-- Loading message -->
     <p id="loading">Loading products...</p>
+
+    <!-- Error message -->
     <p id="error" style="display:none; color:red;">
-        Products load nahi ho paaye
+        Products load nahi ho paaye. Please try again.
     </p>
 
     <!-- Product Grid -->
     <div class="product-grid" id="productGrid">
-        <!-- JS se products yaha aayenge -->
+        <!-- Products JS se yaha inject honge -->
     </div>
 
 </section>
@@ -76,6 +83,7 @@
 <!-- ================= JS =================== -->
 <script src="scripts/app.js"></script>
 
+<!-- Mobile menu toggle -->
 <script>
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
@@ -89,4 +97,5 @@
 
 </body>
 </html>
+
 

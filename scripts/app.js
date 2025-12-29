@@ -1,40 +1,52 @@
-const grid = document.getElementById("productGrid");
-const loading = document.getElementById("loading");
-const errorMsg = document.getElementById("error");
+const productGrid = document.getElementById("productGrid");
+const loadingText = document.getElementById("loading");
+const errorText = document.getElementById("error");
 
-async function fetchProducts() {
-  try {
-    loading.style.display = "block";
+// FakeStore API
+const API_URL = "https://fakestoreapi.com/products";
 
-    const response = await fetch("https://fakestoreapi.com/products");
-    const products = await response.json();
+// Fetch products
+async function loadProducts() {
+    try {
+        loadingText.style.display = "block";
 
-    showProducts(products);
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error("API Error");
+        }
 
-  } catch (error) {
-    errorMsg.style.display = "block";
-  } finally {
-    loading.style.display = "none";
-  }
+        const products = await response.json();
+
+        loadingText.style.display = "none";
+        displayProducts(products);
+
+    } catch (error) {
+        loadingText.style.display = "none";
+        errorText.style.display = "block";
+        console.error(error);
+    }
 }
 
-function showProducts(products) {
-  grid.innerHTML = "";
+// Display products
+function displayProducts(products) {
+    productGrid.innerHTML = "";
 
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
+    products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
 
-    card.innerHTML = `
-      <img src="${product.image}" loading="lazy">
-      <h3>${product.title}</h3>
-      <p>₹${product.price * 80}</p>
-      <button>Add to Cart</button>
-    `;
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.title}" loading="lazy">
+            <h3>${product.title}</h3>
+            <p>₹ ${product.price}</p>
+            <button>Add to Cart</button>
+        `;
 
-    grid.appendChild(card);
-  });
+        productGrid.appendChild(card);
+    });
 }
 
-fetchProducts();
+// Load on page load
+loadProducts();
+
 
