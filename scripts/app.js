@@ -5,5 +5,5 @@ const nav = document.querySelector(".nav");
 // Toggle menu on hamburger click
 hamburger.addEventListener("click", () => {
     nav.classList.toggle("active");
-    document.body.classList.toggle("menu-open");
+
 });
