@@ -11,15 +11,13 @@
 
 <body>
 
-<!-- ===== HEADER START ===== -->
+<!-- ================= HEADER ================= -->
 <header class="header">
 
-    <!-- Logo -->
     <div class="logo">
         <h2>MyStore</h2>
     </div>
 
-    <!-- Navigation -->
     <nav class="nav" id="navMenu">
         <a href="#">Home</a>
         <a href="#products">Products</a>
@@ -27,69 +25,68 @@
         <a href="#">Contact</a>
     </nav>
 
-    <!-- Search bar -->
     <div class="search">
         <input type="text" placeholder="Search products...">
     </div>
 
-    <!-- Cart -->
     <div class="cart">
         🛒 <span class="count">0</span>
     </div>
 
-    <!-- Hamburger menu -->
-    <div class="hamburger" id="hamburger">
-        ☰
-    </div>
+    <div class="hamburger" id="hamburger">☰</div>
 
 </header>
-<!-- ===== HEADER END ===== -->
+<!-- ========================================= -->
 
 
-<!-- ===== HERO SECTION START ===== -->
+<!-- ================= HERO ================= -->
 <section class="hero">
     <div class="hero-content">
         <h1>Biggest Sale of the Year!</h1>
         <p>Discover amazing products at unbeatable prices.</p>
 
-        <!-- CTA BUTTON (WORKING) -->
         <a href="#products">
             <button class="hero-btn">Shop Now</button>
         </a>
     </div>
 </section>
-<!-- ===== HERO SECTION END ===== -->
-<!-- ===== PRODUCTS SECTION ===== -->
-<section class="products">
+<!-- ======================================== -->
+
+
+<!-- ============== PRODUCTS ================ -->
+<section class="products" id="products">
+
     <h2 class="section-title">Our Products</h2>
 
+    <!-- Loading / Error -->
+    <p id="loading">Loading products...</p>
+    <p id="error" style="display:none; color:red;">
+        Products load nahi ho paaye
+    </p>
+
+    <!-- Product Grid -->
     <div class="product-grid" id="productGrid">
         <!-- JS se products yaha aayenge -->
     </div>
+
 </section>
-<!-- ===== PRODUCTS END ===== -->
+<!-- ======================================== -->
 
 
-<!-- ===== PRODUCTS SECTION START ===== -->
-<section id="products" style="padding: 80px 20px; text-align: center;">
-    <h2>Our Products</h2>
-    <p>Products coming soon...</p>
-</section>
-<!-- ===== PRODUCTS SECTION END ===== -->
-
-
-<!-- ===== JAVASCRIPT ===== -->
+<!-- ================= JS =================== -->
 <script src="scripts/app.js"></script>
 
-<!-- Mobile Navbar Toggle -->
 <script>
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
 
     hamburger.addEventListener("click", () => {
         navMenu.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
     });
 </script>
+<!-- ======================================== -->
 
 </body>
 </html>
+

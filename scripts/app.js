@@ -1,32 +1,40 @@
-// Select elements
-const hamburger = document.querySelector(".hamburger");
-const nav = document.querySelector(".nav");
+const grid = document.getElementById("productGrid");
+const loading = document.getElementById("loading");
+const errorMsg = document.getElementById("error");
 
-// Toggle menu on hamburger click
-hamburger.addEventListener("click", () => {
-    nav.classList.toggle("active");
+async function fetchProducts() {
+  try {
+    loading.style.display = "block";
 
-});
-// ===== PRODUCT FETCH =====
-const productGrid = document.getElementById("productGrid");
+    const response = await fetch("https://fakestoreapi.com/products");
+    const products = await response.json();
 
-fetch("https://fakestoreapi.com/products")
-    .then(res => res.json())
-    .then(data => {
-        data.forEach(product => {
-            const card = document.createElement("div");
-            card.classList.add("product-card");
+    showProducts(products);
 
-            card.innerHTML = `
-                <img src="${product.image}" alt="${product.title}">
-                <h3>${product.title.substring(0, 40)}...</h3>
-                <p>₹ ${Math.round(product.price * 80)}</p>
-                <button>Add to Cart</button>
-            `;
+  } catch (error) {
+    errorMsg.style.display = "block";
+  } finally {
+    loading.style.display = "none";
+  }
+}
 
-            productGrid.appendChild(card);
-        });
-    })
-    .catch(error => {
-        console.log("Error fetching products:", error);
-    });
+function showProducts(products) {
+  grid.innerHTML = "";
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    card.innerHTML = `
+      <img src="${product.image}" loading="lazy">
+      <h3>${product.title}</h3>
+      <p>₹${product.price * 80}</p>
+      <button>Add to Cart</button>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+fetchProducts();
+
