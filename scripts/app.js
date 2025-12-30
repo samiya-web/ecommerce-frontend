@@ -17,13 +17,18 @@ function saveCart(cart) {
     updateCartCount();
 }
 
+// 🔴 FIXED: NaN + Edge issue handled
 function updateCartCount() {
     const cart = getCart();
-    const totalItems = cart.reduce(
-        (sum, item) => sum + item.quantity,
-        0
-    );
-    cartCount.textContent = totalItems;
+
+    const totalItems = cart.reduce((sum, item) => {
+        return sum + Number(item.quantity || 0);
+    }, 0);
+
+    // cartCount null check (important)
+    if (cartCount) {
+        cartCount.textContent = totalItems;
+    }
 }
 
 function addToCart(product) {
@@ -44,31 +49,34 @@ function addToCart(product) {
     }
 
     saveCart(cart);
-    alert("Product added to cart 🛒");
+    showToast("Item added to cart 🛒");
 }
 
 // ================= FETCH PRODUCTS =================
 async function loadProducts() {
     try {
-        loadingText.style.display = "block";
-        errorText.style.display = "none";
+        if (loadingText) loadingText.style.display = "block";
+        if (errorText) errorText.style.display = "none";
 
         const res = await fetch(API_URL);
         if (!res.ok) throw new Error("API Error");
 
         const products = await res.json();
-        loadingText.style.display = "none";
+
+        if (loadingText) loadingText.style.display = "none";
         displayProducts(products);
 
     } catch (err) {
-        loadingText.style.display = "none";
-        errorText.style.display = "block";
+        if (loadingText) loadingText.style.display = "none";
+        if (errorText) errorText.style.display = "block";
         console.error(err);
     }
 }
 
 // ================= DISPLAY PRODUCTS =================
 function displayProducts(products) {
+    if (!productGrid) return;
+
     productGrid.innerHTML = "";
 
     products.forEach(product => {
@@ -93,6 +101,19 @@ function displayProducts(products) {
 
         productGrid.appendChild(card);
     });
+}
+
+// ================= TOAST MESSAGE =================
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2000);
 }
 
 // ================= INIT =================
