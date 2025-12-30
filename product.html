@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <title>Product Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
-<!-- HEADER (same like index) -->
+<!-- ================= HEADER ================= -->
 <header class="header">
+
     <div class="logo">
         <h2>MyStore</h2>
     </div>
@@ -20,13 +23,69 @@
         <a href="#">About</a>
         <a href="#">Contact</a>
     </nav>
+
+    <!-- Cart Count -->
+    <div class="cart">
+        🛒 <span class="count" id="cartCount">0</span>
+    </div>
+
 </header>
+<!-- ========================================= -->
 
-<!-- PRODUCT DETAIL SECTION -->
+
+<!-- ============ PRODUCT DETAIL ============= -->
 <section class="product-detail" id="productDetail">
-    <p>Loading product...</p>
-</section>
 
+    <!-- Loading text -->
+    <p id="loading">Loading product...</p>
+
+    <!-- Actual product content (JS se bharega) -->
+    <div class="product-detail-container" id="productContent" style="display:none;">
+
+        <!-- LEFT : IMAGE -->
+        <div class="product-image">
+            <img id="productImage" src="" alt="Product Image">
+        </div>
+
+        <!-- RIGHT : INFO -->
+        <div class="product-info">
+
+            <h1 id="productTitle"></h1>
+
+            <p class="price">
+                ₹ <span id="productPrice"></span>
+            </p>
+
+            <p id="productDescription"></p>
+
+            <!-- ===== Quantity Selector ===== -->
+            <div class="quantity-box">
+                <button id="decreaseQty">−</button>
+                <span id="quantity">1</span>
+                <button id="increaseQty">+</button>
+            </div>
+
+            <!-- ===== Add to Cart ===== -->
+            <button class="add-to-cart-btn" id="addToCartBtn">
+                Add to Cart
+            </button>
+
+            <!-- Success Message -->
+            <p id="successMsg" style="display:none; color:green;">
+                ✔ Added to cart
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+
+
+<!-- Product JS -->
 <script src="scripts/product.js"></script>
+
 </body>
 </html>
+

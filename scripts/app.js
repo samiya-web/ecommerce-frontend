@@ -1,11 +1,13 @@
+// ================= ELEMENTS =================
 const productGrid = document.getElementById("productGrid");
 const loadingText = document.getElementById("loading");
 const errorText = document.getElementById("error");
 const cartCount = document.querySelector(".cart .count");
 
+// ================= API =================
 const API_URL = "https://fakestoreapi.com/products";
 
-// ================= CART FUNCTIONS =================
+// ================= CART HELPERS =================
 function getCart() {
     return JSON.parse(localStorage.getItem("cart")) || [];
 }
@@ -17,23 +19,27 @@ function saveCart(cart) {
 
 function updateCartCount() {
     const cart = getCart();
-    const total = cart.reduce((sum, item) => sum + item.qty, 0);
-    cartCount.textContent = total;
+    const totalItems = cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    );
+    cartCount.textContent = totalItems;
 }
 
 function addToCart(product) {
-    const cart = getCart();
+    let cart = getCart();
+
     const existing = cart.find(item => item.id === product.id);
 
     if (existing) {
-        existing.qty += 1;
+        existing.quantity += 1;
     } else {
         cart.push({
             id: product.id,
             title: product.title,
             price: product.price,
             image: product.image,
-            qty: 1
+            quantity: 1
         });
     }
 
@@ -78,8 +84,12 @@ function displayProducts(products) {
             <button class="add-cart-btn">Add to Cart</button>
         `;
 
+        // Add to cart button
         card.querySelector(".add-cart-btn")
-            .addEventListener("click", () => addToCart(product));
+            .addEventListener("click", (e) => {
+                e.preventDefault();
+                addToCart(product);
+            });
 
         productGrid.appendChild(card);
     });
