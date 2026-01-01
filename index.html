@@ -4,90 +4,55 @@
     <meta charset="UTF-8">
     <title>E-Commerce Frontend</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="header">
-
-    <!-- Logo -->
     <div class="logo">
         <h2>MyStore</h2>
     </div>
 
-    <!-- Navigation -->
     <nav class="nav" id="navMenu">
-        <a href="#">Home</a>
+        <a href="index.html">Home</a>
         <a href="#products">Products</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
     </nav>
 
-    <!-- Search -->
     <div class="search">
         <input type="text" placeholder="Search products...">
     </div>
 
-    <!-- Cart -->
     <a href="cart.html" class="cart">
         🛒 <span class="count">0</span>
     </a>
 
-    <!-- Hamburger -->
     <div class="hamburger" id="hamburger">☰</div>
-
 </header>
-<!-- ========================================= -->
 
-
-<!-- ================= HERO ================= -->
 <section class="hero">
     <div class="hero-content">
         <h1>Biggest Sale of the Year!</h1>
         <p>Discover amazing products at unbeatable prices.</p>
-
-        <a href="#products">
-            <button class="hero-btn">Shop Now</button>
-        </a>
+        <a href="#products" class="hero-btn">Shop Now</a>
     </div>
 </section>
-<!-- ======================================== -->
 
-
-<!-- ============== PRODUCTS ================= -->
 <section class="products" id="products">
-
     <h2 class="section-title">Our Products</h2>
-
-    <!-- Loading message -->
     <p id="loading">Loading products...</p>
-
-    <!-- Error message -->
     <p id="error" style="display:none; color:red;">
         Products load nahi ho paaye. Please try again.
     </p>
-
-    <!-- Product Grid -->
-    <div class="product-grid" id="productGrid">
-        <!-- Products JS se yaha inject honge -->
-    </div>
-
+    <div class="product-grid" id="productGrid"></div>
 </section>
-<!-- ======================================== -->
 
-
-<!-- 🔔 TOAST (BODY KE ANDAR – VERY IMPORTANT) -->
 <div id="toast" class="toast">Item added to cart 🛒</div>
 
-
-<!-- ================= JS =================== -->
 <script src="scripts/app.js"></script>
 
-<!-- Mobile menu toggle -->
 <script>
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
@@ -97,13 +62,6 @@
         document.body.classList.toggle("menu-open");
     });
 </script>
-<!-- ======================================== -->
 
 </body>
 </html>
-
-
-
-
-
-

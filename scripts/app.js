@@ -17,7 +17,7 @@ function saveCart(cart) {
     updateCartCount();
 }
 
-// 🔴 FIXED: NaN + Edge issue handled
+// ================= CART COUNT =================
 function updateCartCount() {
     const cart = getCart();
 
@@ -25,12 +25,12 @@ function updateCartCount() {
         return sum + Number(item.quantity || 0);
     }, 0);
 
-    // cartCount null check (important)
     if (cartCount) {
         cartCount.textContent = totalItems;
     }
 }
 
+// ================= ADD TO CART =================
 function addToCart(product) {
     let cart = getCart();
 
@@ -119,6 +119,3 @@ function showToast(message) {
 // ================= INIT =================
 updateCartCount();
 loadProducts();
-
-
-
