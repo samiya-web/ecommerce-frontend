@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header class="header">
     <div class="logo"><h2>MyStore</h2></div>
 
@@ -16,34 +15,24 @@
         <a href="index.html">Home</a>
         <a href="index.html#products">Products</a>
     </nav>
+
+    <a href="cart.html" class="cart">
+        🛒 <span class="count">0</span>
+    </a>
 </header>
-<!-- ========================================= -->
 
-<!-- ================= CART PAGE ================= -->
 <section class="cart-page">
-
     <h2>Your Shopping Cart</h2>
 
-    <!-- Cart items will be injected here -->
     <div id="cartItems"></div>
 
-    <!-- Cart Summary -->
-    <div class="cart-summary">
-        <h3>Total: ₹<span id="cartTotal">0</span></h3>
+    <h3 id="cartTotal"></h3>
 
-        <button id="checkoutBtn" class="checkout-btn" disabled>
-            Proceed to Checkout
-        </button>
-
-        <br><br>
-
-        <a href="index.html" class="continue-btn">
-            ← Continue Shopping
-        </a>
+    <div class="cart-actions">
+        <a href="index.html" class="continue-btn">← Continue Shopping</a>
+        <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
     </div>
-
 </section>
-<!-- ============================================= -->
 
 <script src="scripts/cart.js"></script>
 </body>
