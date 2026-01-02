@@ -119,3 +119,21 @@ function showToast(message) {
 // ================= INIT =================
 updateCartCount();
 loadProducts();
+// ================= AUTH UI =================
+const authBtn = document.getElementById("authBtn");
+
+if (authBtn) {
+  if (localStorage.getItem("loggedIn")) {
+    authBtn.textContent = "Logout";
+    authBtn.href = "#";
+
+    authBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("loggedIn");
+      window.location.href = "auth.html";
+    });
+  } else {
+    authBtn.textContent = "Login";
+    authBtn.href = "auth.html";
+  }
+}
