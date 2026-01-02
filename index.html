@@ -8,6 +8,11 @@
 </head>
 
 <body>
+<script>
+  if (!localStorage.getItem("loggedIn")) {
+    window.location.href = "auth.html";
+  }
+</script>
 
 <header class="header">
     <div class="logo">
@@ -62,6 +67,27 @@
         navMenu.classList.toggle("active");
         document.body.classList.toggle("menu-open");
     });
+</script>
+<script type="module">
+import { onAuthStateChanged, signOut } from 
+"https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+import { getAuth } from 
+"https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+const auth = getAuth();
+
+const nav = document.querySelector(".nav");
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        nav.innerHTML += `<a href="#" id="logout">Logout</a>`;
+        document.getElementById("logout").onclick = () => {
+            signOut(auth);
+            location.reload();
+        };
+    }
+});
 </script>
 
 </body>
