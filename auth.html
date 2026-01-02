@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login / Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo"><h2>MyStore</h2></div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+</header>
+
+<section class="auth-container">
+
+    <!-- TOGGLE -->
+    <div class="auth-toggle">
+        <button id="loginTab" class="active">Login</button>
+        <button id="signupTab">Sign Up</button>
+    </div>
+
+    <!-- LOGIN -->
+    <form id="loginForm" class="auth-form">
+        <h2>Login</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+
+        <span class="error" id="loginError"></span>
+
+        <a href="#" class="forgot">Forgot Password?</a>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- SIGNUP -->
+    <form id="signupForm" class="auth-form hidden">
+        <h2>Sign Up</h2>
+
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="signupEmail" placeholder="Email" required>
+        <input type="password" id="signupPassword" placeholder="Password" required>
+        <small id="strength"></small>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+        <span class="error" id="signupError"></span>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+</section>
+
+<script src="scripts/auth.js"></script>
+</body>
+</html>
