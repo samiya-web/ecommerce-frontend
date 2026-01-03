@@ -1,89 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Login / Signup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Login / Signup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/auth.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/auth.css">
 </head>
+
 <body>
 
 <header class="header">
-    <div class="logo"><h2>MyStore</h2></div>
+  <div class="logo"><h2>MyStore</h2></div>
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="index.html#products">Products</a>
-        <a href="cart.html">Cart</a>
-    </nav>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#products">Products</a>
+    <a href="cart.html">Cart</a>
+  </nav>
 </header>
 
 <section class="auth-container">
 
-    <!-- TOGGLE -->
-    <div class="auth-toggle">
-        <button id="loginTab" class="active">Login</button>
-        <button id="signupTab">Sign Up</button>
-    </div>
+  <!-- TOGGLE -->
+  <div class="auth-toggle">
+    <button id="loginTab" class="active">Login</button>
+    <button id="signupTab">Sign Up</button>
+  </div>
 
-    <!-- LOGIN -->
-    <form id="loginForm" class="auth-form">
-        <h2>Login</h2>
+  <!-- LOGIN FORM -->
+  <form id="loginForm" class="auth-form">
+    <h2>Login</h2>
 
-        <input type="email" id="loginEmail" placeholder="Email" required>
-        <input type="password" id="loginPassword" placeholder="Password" required>
+    <input type="email" id="loginEmail" placeholder="Email" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
 
-        <span class="error" id="loginError"></span>
+    <span class="error" id="loginError"></span>
 
-        <a href="#" class="forgot">Forgot Password?</a>
+    <a href="#" class="forgot">Forgot Password?</a>
 
-        <button type="submit">Login</button>
-    </form>
+    <button type="submit">Login</button>
+  </form>
 
-    <!-- SIGNUP -->
-    <form id="signupForm" class="auth-form hidden">
-        <h2>Sign Up</h2>
+  <!-- SIGNUP FORM -->
+  <form id="signupForm" class="auth-form hidden">
+    <h2>Sign Up</h2>
 
-        <input type="text" id="name" placeholder="Full Name" required>
-        <input type="email" id="signupEmail" placeholder="Email" required>
-        <input type="password" id="signupPassword" placeholder="Password" required>
-        <small id="strength"></small>
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="signupEmail" placeholder="Email" required>
+    <input type="password" id="signupPassword" placeholder="Password" required>
+    <small id="strength"></small>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
 
-        <span class="error" id="signupError"></span>
+    <span class="error" id="signupError"></span>
 
-        <button type="submit">Create Account</button>
-    </form>
+    <button type="submit">Create Account</button>
+  </form>
 
 </section>
 
-<script src="scripts/auth.js"></script>
+<!-- ✅ ONLY ONE SCRIPT -->
+<script type="module" src="scripts/auth.js"></script>
+
 </body>
 </html>
-
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAVncj5Il4JXFI7MoL5yaKkt2Fb2CJqwhY",
-    authDomain: "mystore-auth-8be56.firebaseapp.com",
-    projectId: "mystore-auth-8be56",
-    storageBucket: "mystore-auth-8be56.firebasestorage.app",
-    messagingSenderId: "162193634730",
-    appId: "1:162193634730:web:268713555915fc2ad3a7d3",
-    measurementId: "G-XP0HNY4P3C"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>

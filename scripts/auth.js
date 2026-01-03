@@ -1,56 +1,88 @@
+/* ================= FIREBASE IMPORTS ================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
+  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// ⚠️ IMPORTANT
-// ye line tumhare firebase-init file se aani chahiye
-// example:
-// import { auth } from "./firebase.js";
+/* ================= FIREBASE CONFIG ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyAVncj5Il4JXFI7MoL5yaKkt2Fb2CJqwhY",
+  authDomain: "mystore-auth-8be56.firebaseapp.com",
+  projectId: "mystore-auth-8be56",
+  storageBucket: "mystore-auth-8be56.appspot.com",
+  messagingSenderId: "162193634730",
+  appId: "1:162193634730:web:268713555915fc2ad3a7d3"
+};
 
-const signupForm = document.getElementById("signupForm");
+/* ================= INIT FIREBASE ================= */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+/* ================= ELEMENTS ================= */
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
 const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
 
-// ================= SIGNUP =================
-if (signupForm) {
-  signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+/* ================= TOGGLE LOGIN / SIGNUP ================= */
+loginTab.addEventListener("click", () => {
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
 
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
+  loginForm.classList.remove("hidden");
+  signupForm.classList.add("hidden");
+});
 
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
+signupTab.addEventListener("click", () => {
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
 
-      // ✅ LOGIN STATE SAVE
-      localStorage.setItem("loggedIn", "true");
+  signupForm.classList.remove("hidden");
+  loginForm.classList.add("hidden");
+});
 
-      alert("Signup successful ✅");
-      window.location.href = "index.html";
-    } catch (error) {
-      alert(error.message);
-    }
-  });
-}
+/* ================= SIGNUP ================= */
+signupForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-// ================= LOGIN =================
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+  const confirm = document.getElementById("confirmPassword").value;
+  const errorBox = document.getElementById("signupError");
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+  errorBox.textContent = "";
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
+  if (password !== confirm) {
+    errorBox.textContent = "Passwords do not match ❌";
+    return;
+  }
 
-      // ✅ LOGIN STATE SAVE
-      localStorage.setItem("loggedIn", "true");
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("Signup successful ✅");
+    window.location.href = "index.html";
+  } catch (err) {
+    errorBox.textContent = err.message;
+  }
+});
 
-      alert("Login successful ✅");
-      window.location.href = "index.html";
-    } catch (error) {
-      alert("Invalid email or password ❌");
-    }
-  });
-}
+/* ================= LOGIN ================= */
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+  const errorBox = document.getElementById("loginError");
+
+  errorBox.textContent = "";
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login successful ✅");
+    window.location.href = "index.html";
+  } catch (err) {
+    errorBox.textContent = "Invalid email or password ❌";
+  }
+});
