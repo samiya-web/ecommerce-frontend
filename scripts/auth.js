@@ -62,7 +62,7 @@ signupForm.addEventListener("submit", async (e) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     alert("Signup successful ✅");
-    window.location.href = "index.html";
+    window.location.href = "/ecommerce-frontend/index.html";
   } catch (err) {
     errorBox.textContent = err.message;
   }
@@ -81,7 +81,7 @@ loginForm.addEventListener("submit", async (e) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     alert("Login successful ✅");
-    window.location.href = "index.html";
+    window.location.href = "/ecommerce-frontend/index.html";
   } catch (err) {
     errorBox.textContent = "Invalid email or password ❌";
   }
