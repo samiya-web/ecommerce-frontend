@@ -63,7 +63,9 @@ signupForm.addEventListener("submit", async (e) => {
     await createUserWithEmailAndPassword(auth, email, password);
 
     // ✅ DIRECT REDIRECT (NO ALERT)
-    window.location.replace("/ecommerce-frontend/index.html");
+   window.location.href = "/ecommerce-frontend/index.html";
+
+
 
   } catch (err) {
     errorBox.textContent = err.message;
@@ -84,7 +86,9 @@ loginForm.addEventListener("submit", async (e) => {
     await signInWithEmailAndPassword(auth, email, password);
 
     // ✅ DIRECT REDIRECT (NO ALERT)
-    window.location.replace("/ecommerce-frontend/index.html");
+   window.location.href = "/ecommerce-frontend/index.html";
+
+
 
   } catch (err) {
     errorBox.textContent = "Invalid email or password ❌";
